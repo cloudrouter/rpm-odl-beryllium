@@ -1,6 +1,6 @@
 %global release_name beryllium
-%global release_version 0.4.0
-%global source_url https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.4.0-Beryllium/distribution-karaf-0.4.0-Beryllium.tar.gz
+%global release_version 0.4.3
+%global source_url https://nexus.opendaylight.org/content/groups/public/org/opendaylight/integration/distribution-karaf/0.4.3-Beryllium-SR3/distribution-karaf-0.4.3-Beryllium-SR3.tar.gz
 
 %define __jar_repack 0
 
@@ -16,14 +16,17 @@ License: EPL-1.0
 URL: http://www.opendaylight.org
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-buildroot
+
 %{?rhel:Requires: java-1.8.0-openjdk-devel}
 %{?fedora:Requires: java-devel >= 1.8.0}
 Requires(pre): shadow-utils, glibc-common
 Requires(postun): shadow-utils
+
 BuildRequires: systemd
 
 Conflicts: opendaylight-helium
 Conflicts: opendaylight-lithium
+Conflicts: opendaylight-boron
 
 # this is used to identify if we need to remove the odl user/group when
 # removing
@@ -83,5 +86,8 @@ rpmquery --query --whatprovides opendaylight > /dev/null \
 %attr(0644,-,-) %{_unitdir}/%{name}.service
 
 %changelog
-* Thu Feb 25 2016 John Siegrist <jsiegrist@iix.net> - 0.4.0-1
+* Sun Oct 16 2016 John Siegrist <john@complects.com> - 0.4.3-1
+- Update version to 0.4.3.
+
+* Thu Feb 25 2016 John Siegrist <john@complects.com> - 0.4.0-1
 - Initial version forked from the ODL-Lithium spec
